@@ -2,14 +2,14 @@
 
 namespace WorkConnect.Models
 {
-    public class Workers
+    public class Worker
     {
         public int Id { get; set; }
 
         [Required]
         public string FullName { get; set; }
 
-        public string ServiceType { get; set; } // Gardener, Cleaner, etc.
+        public string ServiceType { get; set; } // Cleaner, Gardener, etc.
 
         public string Location { get; set; }
 
@@ -20,7 +20,5 @@ namespace WorkConnect.Models
         public string Phone { get; set; }
 
         public string PhotoUrl { get; set; }
-
-        public List<Review> Reviews { get; set; }
     }
 }
