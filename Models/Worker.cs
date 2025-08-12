@@ -7,9 +7,9 @@ namespace WorkConnect.Models
         public int Id { get; set; }
 
         [Required]
-        public string FullName { get; set; }
+        public string Name { get; set; }
 
-        public string ServiceType { get; set; } // Cleaner, Gardener, etc.
+        public string JobTitle { get; set; } // Cleaner, Gardener, etc.
 
         public string Location { get; set; }
 
