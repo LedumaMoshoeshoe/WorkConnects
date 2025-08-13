@@ -1,0 +1,30 @@
+﻿@model WorkConnect.Models.Job
+@{
+    ViewData["Title"] = "Job Details";
+}
+<div class="card fade-in">
+    <h2 class="mb-3">@Model.JobTitle</h2>
+
+    <dl class="row">
+        <dt class="col-sm-3">Service Type</dt>
+        <dd class="col-sm-9">@Model.ServiceType</dd>
+
+        <dt class="col-sm-3">Location</dt>
+        <dd class="col-sm-9">@Model.Location</dd>
+
+        <dt class="col-sm-3">Pay Rate</dt>
+        <dd class="col-sm-9">@(Model.PayRate.HasValue? Model.PayRate.Value.ToString("C") : "-")</dd>
+
+        <dt class="col-sm-3">Posted</dt>
+        <dd class="col-sm-9">@Model.PostedAt.ToLocalTime().ToString("yyyy-MM-dd HH:mm")</dd>
+
+        <dt class="col-sm-3">Description</dt>
+        <dd class="col-sm-9">@Model.Description</dd>
+    </dl>
+
+    <div class="d-flex gap-2">
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-success">Edit</a>
+        <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">Delete</a>
+        <a asp-action="Index" class="btn btn-warning">Back to list</a>
+    </div>
+</div>

@@ -1,4 +1,4 @@
-/* ===== LinkedIn-Inspired Theme ===== */
+/* ===== LinkedIn-Inspired Theme + Smooth Scroll & Animations ===== */
 :root {
     --primary-color: #0a66c2; /* LinkedIn blue */
     --primary-hover: #004182; /* Darker hover */
@@ -16,6 +16,7 @@ body {
     color: var(--text-color);
     margin: 0;
     padding: 0;
+    scroll-behavior: smooth; /* Smooth scroll effect */
 }
 
 /* ===== Navigation Bar ===== */
@@ -52,7 +53,6 @@ body {
             transform: translateY(-2px);
         }
 
-        /* Active page indicator like LinkedIn's underline */
         .custom-navbar .nav-link.active {
             border-bottom: 2px solid var(--primary-color);
             padding-bottom: 4px;
@@ -75,7 +75,7 @@ body {
 
     .btn-primary:hover {
         background-color: var(--primary-hover);
-        transform: translateY(-2px);
+        transform: translateY(-2px) scale(1.02);
         box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     }
 
@@ -86,7 +86,7 @@ body {
 
     .btn-success:hover {
         background-color: #1e7e34;
-        transform: translateY(-2px);
+        transform: translateY(-2px) scale(1.02);
         box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     }
 
@@ -97,7 +97,7 @@ body {
 
     .btn-danger:hover {
         background-color: #a71d2a;
-        transform: translateY(-2px);
+        transform: translateY(-2px) scale(1.02);
         box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     }
 
@@ -108,7 +108,7 @@ body {
 
     .btn-warning:hover {
         background-color: #e0a800;
-        transform: translateY(-2px);
+        transform: translateY(-2px) scale(1.02);
         box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     }
 
@@ -132,6 +132,9 @@ table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
 }
 
 th, td {
@@ -145,9 +148,14 @@ th {
     color: white;
 }
 
-tr:hover {
-    background-color: rgba(0,0,0,0.03);
+tbody tr {
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
+
+    tbody tr:hover {
+        background-color: #f7fbff;
+        transform: scale(1.01);
+    }
 
 /* ===== Animations ===== */
 .fade-in {

@@ -5,20 +5,24 @@ namespace WorkConnect.Models
 {
     public class Job
     {
-        [Key]
-        public int Id { get; set; }
+        public int Id { get; set; } // Primary Key
 
-        [Required]
-        public string Title { get; set; }
+        [Required, StringLength(80)]
+        public string JobTitle { get; set; }
 
-        public string Description { get; set; }
+        [StringLength(80)]
+        public string ServiceType { get; set; } // e.g., Gardening, Cleaning, Painting
 
+        [StringLength(120)]
         public string Location { get; set; }
 
-        public DateTime DatePosted { get; set; }
+        [DataType(DataType.Currency)]
+        public decimal? PayRate { get; set; } // hourly/day rate
 
-        public int EmployerId { get; set; }
+        [DataType(DataType.MultilineText)]
+        public string Description { get; set; }
 
-        public Employer Employer { get; set; }
+        [Display(Name = "Posted At")]
+        public DateTime PostedAt { get; set; } = DateTime.UtcNow;
     }
 }
