@@ -19,7 +19,7 @@ namespace WorkConnect.Controllers
         // GET: /Job
         public async Task<IActionResult> Index()
         {
-            var jobs = await _context.Jobs
+            var jobs = await _context.Job
                 .OrderByDescending(j => j.PostedAt)
                 .ToListAsync();
             return View(jobs);
@@ -30,7 +30,7 @@ namespace WorkConnect.Controllers
         {
             if (id == null) return NotFound();
 
-            var job = await _context.Jobs.FirstOrDefaultAsync(m => m.Id == id);
+            var job = await _context.Job.FirstOrDefaultAsync(m => m.Id == id);
             if (job == null) return NotFound();
 
             return View(job);
@@ -58,7 +58,7 @@ namespace WorkConnect.Controllers
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null) return NotFound();
-            var job = await _context.Jobs.FindAsync(id);
+            var job = await _context.Job.FindAsync(id);
             if (job == null) return NotFound();
             return View(job);
         }
@@ -79,7 +79,7 @@ namespace WorkConnect.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!_context.Jobs.Any(e => e.Id == job.Id)) return NotFound();
+                    if (!_context.Job.Any(e => e.Id == job.Id)) return NotFound();
                     throw;
                 }
                 return RedirectToAction(nameof(Index));
@@ -91,7 +91,7 @@ namespace WorkConnect.Controllers
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null) return NotFound();
-            var job = await _context.Jobs.FirstOrDefaultAsync(m => m.Id == id);
+            var job = await _context.Job.FirstOrDefaultAsync(m => m.Id == id);
             if (job == null) return NotFound();
             return View(job);
         }
@@ -101,10 +101,10 @@ namespace WorkConnect.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var job = await _context.Jobs.FindAsync(id);
+            var job = await _context.Job.FindAsync(id);
             if (job != null)
             {
-                _context.Jobs.Remove(job);
+                _context.Job.Remove(job);
                 await _context.SaveChangesAsync();
             }
             return RedirectToAction(nameof(Index));

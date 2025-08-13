@@ -10,7 +10,7 @@ var connectionString= builder.Configuration.GetConnectionString("DefaultConnecti
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-options.UseSqlServer(builder.Configuration.GetConnectionString("Server=localhost\\SQLEXPRESS;Database=master;Trusted_Connection=True;")));
+    options.UseSqlServer(connectionString));
 
 
 var app = builder.Build();

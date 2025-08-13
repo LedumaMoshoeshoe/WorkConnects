@@ -2,39 +2,61 @@
 @{
     ViewData["Title"] = "Jobs";
 }
+
 <div class="card fade-in">
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h2 class="m-0">Jobs</h2>
         <a asp-action="Create" class="btn btn-primary">+ Post Job</a>
     </div>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>@Html.DisplayNameFor(m => m.First().JobTitle)</th>
-                <th>@Html.DisplayNameFor(m => m.First().ServiceType)</th>
-                <th>@Html.DisplayNameFor(m => m.First().Location)</th>
-                <th>@Html.DisplayNameFor(m => m.First().PayRate)</th>
-                <th>@Html.DisplayNameFor(m => m.First().PostedAt)</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>@item.JobTitle</td>
-                    <td>@item.ServiceType</td>
-                    <td>@item.Location</td>
-                    <td>@(item.PayRate.HasValue? item.PayRate.Value.ToString("C") : "-")</td>
-                    <td>@item.PostedAt.ToLocalTime().ToString("yyyy-MM-dd HH:mm")</td>
-                    <td class="text-nowrap">
-                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-primary">Details</a>
-                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-success ms-1">Edit</a>
-                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger ms-1">Delete</a>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
+    @if (Model != null && Model.Any())
+    {
+        <div class="table-responsive">
+            <table class="table table-hover align-middle">
+                <thead class="table-light">
+                    <tr>
+                        <th>@Html.DisplayNameFor(m => m.First().JobTitle)</th>
+                        <th>@Html.DisplayNameFor(m => m.First().ServiceType)</th>
+                        <th>@Html.DisplayNameFor(m => m.First().Location)</th>
+                        <th>@Html.DisplayNameFor(m => m.First().PayRate)</th>
+                        <th>@Html.DisplayNameFor(m => m.First().PostedAt)</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.JobTitle</td>
+                            <td>@item.ServiceType</td>
+                            <td>@item.Location</td>
+                            <td>@(item.PayRate.HasValue? item.PayRate.Value.ToString("C") : "N/A")</td>
+                            <td>@item.PostedAt.ToLocalTime().ToString("yyyy-MM-dd HH:mm")</td>
+                            <td class="text-nowrap">
+                                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-primary">Details</a>
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-success ms-1">Edit</a>
+                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger ms-1">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info text-center">
+            No jobs found. Click <a asp-action="Create">here</a> to post a new job.
+        </div>
+    }
 </div>
+
+<style>
+    .fade-in {
+        animation: fadeIn 0.8s ease-in-out;
+    }
+    @@keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+</style>

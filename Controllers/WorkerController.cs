@@ -39,7 +39,7 @@ namespace WorkConnect.Controllers
         {
             if (ModelState.IsValid)
             {
-                worker.Id = _workers.Max(w => w.Id) + 1;
+                worker.Id = _workers.Any() ? _workers.Max(w => w.Id) + 1 : 1;
                 _workers.Add(worker);
                 return RedirectToAction(nameof(Index));
             }
